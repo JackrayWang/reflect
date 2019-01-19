@@ -63,13 +63,16 @@ public class ReflectTest {
 		return testBean;
 	}
 	
-	
+	/**
+	 * 反射方法
+	 * @return
+	 */
 	public Object reflectMethod() {
 		Object obj = null;
 		//获取一个bean
 		TestBean bean = getBean();
 		try {
-			//有参方法
+			//有参方法  一个方法可以有多个参数 根据参数的循序指定  参数的类型即可  逗号分隔
 			Method method = bean.getClass().getMethod("setName", String.class);
 			//指定set方法
 			method.invoke(bean, "sad");
@@ -78,19 +81,19 @@ public class ReflectTest {
 			obj = method2.invoke(bean);
 			
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
+			// 没有该方法
 			e.printStackTrace();
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
+			// 权限
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
+			// 不循序访问  属性或者方法为私有
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
+			// 参数传出异常
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
+			// 发射异常
 			e.printStackTrace();
 		}
 		
